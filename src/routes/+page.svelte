@@ -1,2 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<span class="flex justify-center items-center w-full">
+	<h1
+		class="text-7xl hover:text-yellow-500 hover:border-yellow-500 border-solid dark:text-white text-center transition-colors"
+	>
+		Autown
+	</h1>
+</span>
