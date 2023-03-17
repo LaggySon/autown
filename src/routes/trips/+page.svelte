@@ -3,25 +3,25 @@
 	export let description: string = 'Description';
 </script>
 
-<body style="background-color: white; height:100%;">
+<body style="height:100%;">
 	<div>
 		<form style="text-align: center;">
 			<input
-				class="w-5/6 text-7xl"
-				style="margin-top:20px; text-align:center;"
+				class="w-5/6 text-7xl dark:text-white"
+				style="margin-top:20px; text-align:center; background:none;"
 				type="text"
 				value={name}
 			/>
 
-			<h1 class="text-5xl" style="margin-top: 40px;">{description}</h1>
+			<h1 class="text-5xl dark:text-white" style="margin-top: 40px;">{description}</h1>
 			<textarea
 				placeholder="Enter trip description."
-				class=" rounded w-2/6 border-solid border-2"
-				style="margin-top: 25px; height:100px; padding:20px;"
+				class="rounded w-2/6 border-solid border-2 h-100px"
+				style="margin-top: 25px; padding:20px;"
 				id="description"
 			/>
 
-			<h1 class="text-5xl" style="margin-top:20px">Origin</h1>
+			<h1 class="text-5xl dark:text-white" style="margin-top:20px">Origin</h1>
 			<input
 				class="rounded w-2/6 border-solid border-2"
 				style="margin-top: 25px; padding-left:10px; height:40px; border-top:0px; border-left:0px; border-right: 0px; text-align:center;"
@@ -29,7 +29,7 @@
 				placeholder="[Home Address]"
 			/>
 
-			<h1 class="text-5xl" style="margin-top:20px;">Destination</h1>
+			<h1 class="text-5xl dark:text-white" style="margin-top:20px;">Destination</h1>
 			<input
 				class="rounded w-2/6 border-solid border-2"
 				style="margin-top: 25px; padding-left:10px; height:40px; border-top:0px; border-left:0px; border-right: 0px; text-align:center;"
