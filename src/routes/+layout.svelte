@@ -1,10 +1,18 @@
 <script>
 	import '../app.css';
+	import Header from './Header.svelte';
 </script>
 
 <head>
 	<title>Autown</title>
 </head>
-<body class="h-screen w-screen dark:bg-slate-800 dark:text-white font-Titillium">
-	<slot />
+
+<body class="min-h-screen flex flex-col dark:bg-slate-800 dark:text-white font-Titillium">
+	<Header />
+
+	<main class="flex-1"><slot /></main>
+
+	<footer class="flex justify-center">
+		<p>Michael Richards, Danny Dang, and Gabriel Baffo</p>
+	</footer>
 </body>
