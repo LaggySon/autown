@@ -4,7 +4,8 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				Titillium: ['Titillium Web', 'sans-serif']
+				Titillium: ['Titillium Web', 'sans-serif'],
+				Raleway: ['Raleway', 'sans-serif']
 			}
 		}
 	},
