@@ -1,9 +1,11 @@
 <script lang="ts">
 	import Profile from '$lib/profile.svelte';
+	import Autown from '$lib/autown.png';
 </script>
 
 <body class="my-10">
-	<h1 class="text-7xl  border-solid dark:text-white text-center transition-colors">Autown</h1>
+	<div class="h-20 w-full flex justify-center"><img src={Autown} alt="" /></div>
+	<h1 class="text-3xl  border-solid dark:text-white text-center transition-colors">Autown</h1>
 	<div class="h-80 w-full flex flex-col items-center justify-center my-auto">
 		<div class="pb-2 w-full flex flex-col items-center justify-center">
 			<Profile />

@@ -7,7 +7,7 @@
 	<title>Autown</title>
 </head>
 
-<body class="min-h-screen flex flex-col dark:bg-slate-800 dark:text-white font-Titillium">
+<body class="min-h-screen flex flex-col dark:bg-slate-800 dark:text-white font-Raleway">
 	<Header />
 
 	<main class="flex-1"><slot /></main>
