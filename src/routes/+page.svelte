@@ -2,10 +2,10 @@
 	import Profile from '$lib/profile.svelte';
 
 	function navigateToRegister(){
-		window.location.href = "http://localhost:5173/authentication-register";
+		window.location.href = "/authentication-register";
 	}
 	function navigateToSignIn(){
-		window.location.href = "http://localhost:5173/authentication-sign-in";
+		window.location.href = "/authentication-sign-in";
 	}
 </script>
 

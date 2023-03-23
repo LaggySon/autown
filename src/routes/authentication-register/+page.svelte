@@ -36,7 +36,7 @@
 	function registerUser() {
 		let email = (<HTMLInputElement>document.getElementById('username')).value;
 		let password = (<HTMLInputElement>document.getElementById('password')).value;
-            
+
         if(!validateForm()){
             alert('Please enter a valid email and password.');
             return;
@@ -56,7 +56,7 @@
 	}
 
     function navigateToSignIn(){
-        window.location.href = "http://localhost:5173/authentication-sign-in";
+        window.location.href = "/authentication-sign-in";
     }
 </script>
 

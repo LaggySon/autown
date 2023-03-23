@@ -56,7 +56,7 @@
 	}
 
 	function navigateToCreateAccount() {
-		window.location.href = 'http://localhost:5173/authentication-register';
+		window.location.href = '/authentication-register';
 	}
 </script>
 
