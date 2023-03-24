@@ -1,5 +1,12 @@
 <script lang="ts">
 	import Profile from '$lib/profile.svelte';
+
+	function navigateToRegister(){
+		window.location.href = "/authentication-register";
+	}
+	function navigateToSignIn(){
+		window.location.href = "/authentication-sign-in";
+	}
 </script>
 
 <body class="my-10">
@@ -9,11 +16,13 @@
 			<Profile />
 		</div>
 		<button
+			on:click={navigateToSignIn}
 			class="bg-gray-300 hover:bg-gray-400 items-center p-2 w-48 text-black font-bold py-2 px-6"
 		>
 			Log In
 		</button>
 		<button
+			on:click={navigateToRegister}
 			class="bg-gray-300 hover:bg-gray-400 items-center p-2 w-48 mt-2 text-black font-bold py-2 px-5"
 		>
 			Sign Up
