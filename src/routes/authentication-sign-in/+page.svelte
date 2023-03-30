@@ -3,7 +3,7 @@
 	import { firebaseConfig } from '../../firebase-config.js';
 	import { initializeApp } from 'firebase/app';
 	import { getAnalytics } from 'firebase/analytics';
-	import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+	import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 	// TODO: Add SDKs for Firebase products that you want to use
 	// https://firebase.google.com/docs/web/setup#available-libraries
@@ -33,25 +33,25 @@
 	}
 
 	function signUserIn() {
-        let email = (<HTMLInputElement>document.getElementById('username')).value;
+		let email = (<HTMLInputElement>document.getElementById('username')).value;
 		let password = (<HTMLInputElement>document.getElementById('password')).value;
-            
-        if(!validateForm()){
-            alert('Please enter a valid email and password.');
-            return;
-        }
+
+		if (!validateForm()) {
+			alert('Please enter a valid email and password.');
+			return;
+		}
 
 		signInWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				// Signed in
 				const user = userCredential.user;
-                alert('Signed in User');
+				// alert('Signed in User');
 				// ...
 			})
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
-                alert('Unable to sign in user: ' + errorMessage);
+				alert('Unable to sign in user: ' + errorMessage);
 			});
 	}
 
@@ -90,7 +90,7 @@
 
 		<div class="flex justify-center">
 			<button
-                on:click={signUserIn}
+				on:click={signUserIn}
 				class="w-5/12 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 				type="button"
 			>
@@ -117,5 +117,6 @@
 				Forgot Password?
 			</a>
 		</div>
+		<!-- <div class="text-red-500" on:click={() => signOut()}>SIGN OUT</div> -->
 	</form>
 </div>

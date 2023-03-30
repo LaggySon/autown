@@ -1,6 +1,8 @@
 <script>
 	import Plus from '$lib/plus.svelte';
 	import Trip from './Trip.svelte';
+
+	export let data;
 </script>
 
 <div class="m-auto w-3/4 ">

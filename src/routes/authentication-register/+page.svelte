@@ -1,11 +1,13 @@
 <script lang="ts">
 	// Import the functions you need from the SDKs you need
-    import { firebaseConfig } from '../../firebase-config.js'
+	import { firebaseConfig } from '../../firebase-config.js';
 	import { initializeApp } from 'firebase/app';
 	import { getAnalytics } from 'firebase/analytics';
 	import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+	import { collection, addDoc } from 'firebase/firestore';
+	import { getFirestore } from 'firebase/firestore';
 
-    // TODO: Add SDKs for Firebase products that you want to use
+	// TODO: Add SDKs for Firebase products that you want to use
 	// https://firebase.google.com/docs/web/setup#available-libraries
 
 	// Your web app's Firebase configuration
@@ -14,39 +16,48 @@
 	// Initialize Firebase
 	const app = initializeApp(firebaseConfig);
 	const auth = getAuth(app);
+    const db = getFirestore(app);
 
-    function validateForm() : Boolean{
-        var email = (<HTMLInputElement>document.getElementById('username')).value;
-        var password = (<HTMLInputElement>document.getElementById('password')).value;
-        if(!validateEmail(email)){
-            return false;
-        }
-        if(password == ""){
-            return false;
-        }
-        return true;
-    }
+	function validateForm(): Boolean {
+		var email = (<HTMLInputElement>document.getElementById('username')).value;
+		var password = (<HTMLInputElement>document.getElementById('password')).value;
+		if (!validateEmail(email)) {
+			return false;
+		}
+		if (password == '') {
+			return false;
+		}
+		return true;
+	}
 
-    function validateEmail(email: string) {
-        var re = /\S+@\S+\.\S+/;
-        return re.test(email);
-    }
-  
+	function validateEmail(email: string) {
+		var re = /\S+@\S+\.\S+/;
+		return re.test(email);
+	}
 
-	function registerUser() {
+	async function registerUser() {
 		let email = (<HTMLInputElement>document.getElementById('username')).value;
 		let password = (<HTMLInputElement>document.getElementById('password')).value;
 
-        if(!validateForm()){
-            alert('Please enter a valid email and password.');
-            return;
-        }
+		if (!validateForm()) {
+			alert('Please enter a valid email and password.');
+			return;
+		}
 
-		createUserWithEmailAndPassword(auth, email, password)
-			.then((userCredential) => {
+		 createUserWithEmailAndPassword(auth, email, password)
+			.then(async (userCredential) => {
 				// Signed in
 				const user = userCredential.user;
 				alert('Registered User');
+				try {
+					const docRef = await addDoc(collection(db, 'Users'), {
+						email:  email,
+                        trips : [{destination:"A", origin:"B"}]
+					});
+					console.log('Document written with ID: ', docRef.id);
+				} catch (e) {
+					console.error('Error adding document: ', e);
+				}
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -55,9 +66,9 @@
 			});
 	}
 
-    function navigateToSignIn(){
-        window.location.href = "/authentication-sign-in";
-    }
+	function navigateToSignIn() {
+		window.location.href = '/authentication-sign-in';
+	}
 </script>
 
 <br />
@@ -65,7 +76,11 @@
 <br />
 
 <div class="w-full flex justify-center">
-	<form name="registerUser" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" style="width: 500px;">
+	<form
+		name="registerUser"
+		class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+		style="width: 500px;"
+	>
 		<div class="mb-4">
 			<label class="block text-gray-700 text-sm font-bold mb-2" for="username"> Email </label>
 			<input
@@ -90,7 +105,7 @@
 
 		<div class="flex justify-center">
 			<button
-                on:click={registerUser}
+				on:click={registerUser}
 				class="w-5/12 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 				type="button"
 			>
@@ -100,7 +115,7 @@
 		<br />
 		<div class="flex justify-center">
 			<button
-                on:click={navigateToSignIn}
+				on:click={navigateToSignIn}
 				class="w-7/12 hover:text-blue-900 text-blue-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 				type="button"
 			>
