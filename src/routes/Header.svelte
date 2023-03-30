@@ -27,9 +27,9 @@
 		<li class="p-2 border hover:text-yellow-500 hover:border-yellow-500">
 			<a href="/">Home</a>
 		</li>
-		<li class="p-2 border hover:text-yellow-500 hover:border-yellow-500">
+		<!-- <li class="p-2 border hover:text-yellow-500 hover:border-yellow-500">
 			<a href="/trips">Trip Editor</a>
-		</li>
+		</li> -->
 		<li class="p-2 border hover:text-yellow-500 hover:border-yellow-500">
 			<a href="/tripmanager">Trip Manager</a>
 		</li>
