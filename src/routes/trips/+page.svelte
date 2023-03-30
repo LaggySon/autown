@@ -3,43 +3,32 @@
 	export let description: string = 'Description';
 </script>
 
-<body style="height:100%;">
+<body>
 	<div>
 		<form style="text-align: center;" class="mx-10">
 			<input
-				class="w-5/6 text-7xl dark:text-white"
-				style="margin-top:20px; text-align:center; background:none;"
+				class="w-5/6 text-3xl lg:text-5xl dark:text-white border-b mt-5 text-center bg-transparent"
 				type="text"
 				value={name}
 			/>
 
-			<h1 class="text-5xl dark:text-white" style="margin-top: 40px;">{description}</h1>
-			<textarea
-				placeholder="Enter trip description."
-				class="rounded w-full max-w-4xl border-solid border-2 h-100px"
-				style="margin-top: 25px; padding:20px;"
-				id="description"
-			/>
-
-			<h1 class="text-5xl dark:text-white" style="margin-top:20px">Origin</h1>
+			<h1 class="text-xl dark:text-white mt-5">Origin</h1>
 			<input
-				class="rounded w-full max-w-4xl border-solid border-2"
-				style="margin-top: 25px; padding-left:10px; height:40px; border-top:0px; border-left:0px; border-right: 0px; text-align:center;"
+				class="text-center  w-full max-w-4xl border-solid border-2"
 				type="text"
 				placeholder="[Home Address]"
 			/>
 
-			<h1 class="text-5xl dark:text-white" style="margin-top:20px;">Destination</h1>
+			<h1 class="text-xl dark:text-white mt-5">Destination</h1>
 			<input
-				class="rounded w-full max-w-4xl border-solid border-2"
-				style="margin-top: 25px; padding-left:10px; height:40px; border-top:0px; border-left:0px; border-right: 0px; text-align:center;"
+				class="text-center  w-full max-w-4xl border-solid border-2"
 				type="text"
 				placeholder="[Work Address]"
 			/>
 			<br />
 			<button
-				class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-1/6"
-				style="margin-top:50px">Save</button
+				class="bg-gray-300 hover:bg-gray-400 items-center p-2 w-48 mt-12 text-black font-bold py-2 px-5"
+				>Save</button
 			>
 		</form>
 	</div>
