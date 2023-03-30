@@ -8,10 +8,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-const docRef = doc(collection(db, 'Users'));
-const docSnap = await getDoc(docRef);
-
 export const load = async () => {
+	const docRef = doc(collection(db, 'Users'));
+	const docSnap = await getDoc(docRef);
 	const data = await docSnap.data();
 	console.log(data);
 	return { data };
