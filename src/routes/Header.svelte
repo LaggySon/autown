@@ -28,7 +28,6 @@
 		<li class="p-2 border hover:text-yellow-500 hover:border-yellow-500">
 			<a href="/">Home</a>
 		</li>
-
 		{#if $authStore.isLoggedIn}
 			<li class="p-2 border hover:text-yellow-500 hover:border-yellow-500">
 				<a href="/tripmanager">Trip Manager</a>
