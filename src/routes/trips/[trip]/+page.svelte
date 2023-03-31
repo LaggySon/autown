@@ -5,7 +5,7 @@
 
 	let userTrip = { name: '', origin: '', destination: '' };
 	if (!$authStore.initializing) {
-		userTrip = data.docs.find((doc: any) => doc.email === 'richardsm3@wit.edu').trips[data.tripId];
+		userTrip = data.docs.find((doc: any) => doc.email === $authStore.user.email).trips[data.tripId];
 		// console.log(userTrip);
 	}
 </script>
