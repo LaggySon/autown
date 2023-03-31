@@ -4,7 +4,7 @@
 	import { initializeApp } from 'firebase/app';
 	import { getAnalytics } from 'firebase/analytics';
 	import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-	import { collection, addDoc } from 'firebase/firestore';
+	import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
 	import { getFirestore } from 'firebase/firestore';
 	import { goto } from '$app/navigation';
 
@@ -49,13 +49,19 @@
 			.then(async (userCredential) => {
 				// Signed in
 				const user = userCredential.user;
+				console.log(email);
 				alert('Registered User');
 				try {
-					const docRef = await addDoc(collection(db, 'Users'), {
+					const docRef = doc(db, 'Users', String(email));
+					const data = {
 						email: email,
 						trips: [{ name: 'Starter Trip', destination: 'Work', origin: 'Home' }]
-					});
-					console.log('Document written with ID: ', docRef.id);
+					};
+					setDoc(docRef, data)
+						.then(() => {
+							console.log('Document has been added Successfully!');
+						})
+						.catch((error) => console.log(error));
 				} catch (e) {
 					console.error('Error adding document: ', e);
 				}
