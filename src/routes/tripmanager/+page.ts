@@ -1,9 +1,10 @@
 import { initializeApp } from 'firebase/app';
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { collection, getDocs, getFirestore, setDoc } from 'firebase/firestore';
 import { firebaseConfig } from '../../firebase-config';
 import { doc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import authStore from '../../stores/authStore';
+import { redirect } from '@sveltejs/kit';
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -19,7 +20,6 @@ export const load = async () => {
 	docSnap.forEach((doc) => {
 		docs.push(doc.data());
 	});
-	console.log(docs);
 
 	return { docs };
 };
