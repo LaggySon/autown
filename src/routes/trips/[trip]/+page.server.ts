@@ -9,6 +9,13 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
+async function getTrips(email: string) {
+	const docRef = doc(db, 'Users', String(email));
+	const docSnap = await getDoc(docRef);
+	const trips = docSnap.data()?.trips;
+	return trips;
+}
+
 export const load = async ({ params }: any) => {
 	if (!Number.isNaN(Number(params.trip))) {
 		const docSnap = await getDocs(collection(db, 'Users'));
@@ -40,12 +47,25 @@ export const actions = {
 		const trips = docSnap.data()?.trips;
 		trips[index] = { name, origin, destination };
 		setDoc(docRef, { trips }, { merge: true });
-		console.log(trips);
+		// console.log(trips);
 
 		throw redirect(303, '/tripmanager');
 
 		return {
 			status: '200'
 		};
+	},
+	delete: async ({ request }: any) => {
+		const formData = await request.formData();
+		const email: string = formData.get('email');
+		const index: number = formData.get('index');
+
+		const trips = await getTrips(email);
+		const docRef = doc(db, 'Users', String(email));
+		const docSnap = await getDoc(docRef);
+
+		trips.splice(index, 1);
+		setDoc(docRef, { trips }, { merge: true });
+		throw redirect(303, '/tripmanager');
 	}
 };
