@@ -14,13 +14,12 @@ let userstuff = {};
 authStore.subscribe((value) => (userstuff = value));
 
 export const load = async () => {
-	console.log(userstuff);
 	const docSnap = await getDocs(collection(db, 'Users'));
 	let docs: any = [];
 	docSnap.forEach((doc) => {
 		docs.push(doc.data());
 	});
-	// console.log(docs);
+	console.log(docs);
 
 	return { docs };
 };
