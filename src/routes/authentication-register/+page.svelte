@@ -6,6 +6,7 @@
 	import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 	import { collection, addDoc } from 'firebase/firestore';
 	import { getFirestore } from 'firebase/firestore';
+	import { goto } from '$app/navigation';
 
 	// TODO: Add SDKs for Firebase products that you want to use
 	// https://firebase.google.com/docs/web/setup#available-libraries
@@ -16,7 +17,7 @@
 	// Initialize Firebase
 	const app = initializeApp(firebaseConfig);
 	const auth = getAuth(app);
-    const db = getFirestore(app);
+	const db = getFirestore(app);
 
 	function validateForm(): Boolean {
 		var email = (<HTMLInputElement>document.getElementById('username')).value;
@@ -44,20 +45,21 @@
 			return;
 		}
 
-		 createUserWithEmailAndPassword(auth, email, password)
+		createUserWithEmailAndPassword(auth, email, password)
 			.then(async (userCredential) => {
 				// Signed in
 				const user = userCredential.user;
 				alert('Registered User');
 				try {
 					const docRef = await addDoc(collection(db, 'Users'), {
-						email:  email,
-                        trips : [{destination:"A", origin:"B"}]
+						email: email,
+						trips: [{ name: 'Starter Trip', destination: 'Work', origin: 'Home' }]
 					});
 					console.log('Document written with ID: ', docRef.id);
 				} catch (e) {
 					console.error('Error adding document: ', e);
 				}
+				goto('/tripmanager');
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -76,37 +78,32 @@
 <br />
 
 <div class="w-full flex justify-center">
-	<form
-		name="registerUser"
-		class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-		style="width: 500px;"
-	>
+	<form name="registerUser" class=" px-8 pt-6 pb-8 mb-4" style="width: 500px;">
 		<div class="mb-4">
-			<label class="block text-gray-700 text-sm font-bold mb-2" for="username"> Email </label>
+			<label class="text-center block  text-sm font-bold mb-2" for="username"> Email </label>
 			<input
 				required
-				class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+				class="text-center shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 				id="username"
 				type="email"
 				placeholder="Email"
 			/>
 		</div>
 		<div class="mb-6">
-			<label class="block text-gray-700 text-sm font-bold mb-2" for="password"> Password </label>
+			<label class="text-center block  text-sm font-bold mb-2" for="password"> Password </label>
 			<input
 				required
-				class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+				class="text-center shadow appearance-none border  w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
 				id="password"
 				type="password"
 				placeholder="******************"
 			/>
-			<p class="text-red-500 text-xs italic">Please choose a password.</p>
 		</div>
 
 		<div class="flex justify-center">
 			<button
 				on:click={registerUser}
-				class="w-5/12 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+				class="bg-gray-300 hover:bg-gray-400 items-center p-2 w-48 text-black font-bold py-2 px-6"
 				type="button"
 			>
 				Create Account
@@ -116,7 +113,7 @@
 		<div class="flex justify-center">
 			<button
 				on:click={navigateToSignIn}
-				class="w-7/12 hover:text-blue-900 text-blue-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+				class="w-7/12 hover:text-gray-400 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 				type="button"
 			>
 				Existing User? Sign In.
