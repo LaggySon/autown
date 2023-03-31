@@ -3,10 +3,10 @@
 	import authStore from '../../../stores/authStore';
 	export let data;
 
-	let userTrip = { name: 'X', origin: 'X', destination: 'X' };
+	let userTrip = { name: '', origin: '', destination: '' };
 	if (!$authStore.initializing) {
-		userTrip = data.docs.find((doc: any) => doc.email === 'richardsm3@wit.edu').trips[data.tripId];
-		console.log(userTrip);
+		userTrip = data.docs.find((doc: any) => doc.email === $authStore.user.email).trips[data.tripId];
+		// console.log(userTrip);
 	}
 </script>
 
@@ -19,6 +19,7 @@
 					type="text"
 					value={userTrip.name}
 					name="name"
+					placeholder="[Trip Name]"
 				/>
 
 				<h1 class="text-xl dark:text-white mt-5">Origin</h1>
@@ -41,11 +42,17 @@
 				<input type="hidden" name="index" value={data.tripId} />
 				<br />
 
-				<input
-					class="bg-gray-300 hover:bg-gray-400 items-center p-2 w-48 mt-12 text-black font-bold py-2 px-5"
-					type="submit"
-					value="Save"
-				/>
+				<div class="mt-12">
+					<input
+						class="bg-gray-300 hover:bg-gray-400 items-center p-2 w-48 m-2 text-black font-bold py-2 px-5"
+						type="submit"
+						value="Save"
+					/>
+					<button
+						class="bg-gray-300 hover:bg-red-800 hover:text-gray-300 items-center p-2 w-48 m-2 text-red-800 font-bold py-2 px-5"
+						formaction="?/delete">Delete</button
+					>
+				</div>
 			{/if}
 		</form>
 	</div>

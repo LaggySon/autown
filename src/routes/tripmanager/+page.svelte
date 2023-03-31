@@ -21,9 +21,14 @@
 					><Trip name={trip.name} origin={trip.origin} dest={trip.destination} /></a
 				>
 			{/each}
-		{/if}
-		<div class="w-full flex justify-center cursor-pointer  hover:scale-90 transition-all">
-			<Plus />
-		</div>
+
+			<form
+				class="w-full flex justify-center cursor-pointer  hover:scale-90 transition-all"
+				method="POST"
+				action="?/create"
+			>
+				<input type="hidden" name="email" value={$authStore.user.email} />
+				<button formaction="?/create"><Plus /></button>
+			</form>{/if}
 	</div>
 </div>
