@@ -4,6 +4,33 @@
 	export let dest: string;
 	import Train from '$lib/train.svelte';
 	import Car from '$lib/car.svelte';
+	import axios from 'axios';
+	import {Client, TravelMode} from "@googlemaps/google-maps-services-js";
+
+	// Make a request for a user with a given ID
+	const tripOrigin = "555 Huntington Avenue, Boston MA"
+	const tripDestination = "200 Commonwealth Ave, Boston MA"
+
+	const client = new Client({});
+	
+	client
+      .distancematrix({
+        params: {
+          key: '',
+          origins: ['Greenwich, England'],
+          destinations: ['Stockholm, Sweden'],
+          mode: TravelMode.driving,
+          // Feel free to set more params
+        },
+
+        timeout: 1000, // milliseconds
+      })
+      .then((r) => {
+        console.log(r.data.rows[0]?.elements);
+      })
+      .catch((e) => {
+        console.log(e.response.data.status);
+      });
 </script>
 
 <div
