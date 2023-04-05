@@ -1,9 +1,12 @@
 <script>
 	import '../app.css';
 	import Header from './Header.svelte';
+	import Auth from '$lib/components/auth.svelte';
+	import authStore from '../stores/authStore';
 </script>
 
 <head>
+
 	<title>Autown</title>
 </head>
 
@@ -16,3 +19,4 @@
 		<p>Michael Richards, Danny Dang, and Gabriel Baffo</p>
 	</footer>
 </body>
+<Auth />

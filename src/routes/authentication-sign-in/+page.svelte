@@ -3,7 +3,8 @@
 	import { firebaseConfig } from '../../firebase-config.js';
 	import { initializeApp } from 'firebase/app';
 	import { getAnalytics } from 'firebase/analytics';
-	import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+	import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+	import { goto } from '$app/navigation';
 
 	// TODO: Add SDKs for Firebase products that you want to use
 	// https://firebase.google.com/docs/web/setup#available-libraries
@@ -33,25 +34,26 @@
 	}
 
 	function signUserIn() {
-        let email = (<HTMLInputElement>document.getElementById('username')).value;
+		let email = (<HTMLInputElement>document.getElementById('username')).value;
 		let password = (<HTMLInputElement>document.getElementById('password')).value;
-            
-        if(!validateForm()){
-            alert('Please enter a valid email and password.');
-            return;
-        }
+
+		if (!validateForm()) {
+			alert('Please enter a valid email and password.');
+			return;
+		}
 
 		signInWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				// Signed in
 				const user = userCredential.user;
-                alert('Signed in User');
+				// alert('Signed in User');
 				// ...
+				goto('/tripmanager');
 			})
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
-                alert('Unable to sign in user: ' + errorMessage);
+				alert('Unable to sign in user: ' + errorMessage);
 			});
 	}
 
@@ -65,33 +67,32 @@
 <br />
 
 <div class="w-full flex justify-center">
-	<form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" style="width: 500px;">
+	<form class=" rounded px-8 pt-6 pb-8 mb-4" style="width: 500px;">
 		<div class="mb-4">
-			<label class="block text-gray-700 text-sm font-bold mb-2" for="username"> Email </label>
+			<label class="text-center block  text-sm font-bold mb-2" for="username"> Email </label>
 			<input
 				required
-				class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+				class="text-center shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 				id="username"
 				type="email"
 				placeholder="Email"
 			/>
 		</div>
 		<div class="mb-6">
-			<label class="block text-gray-700 text-sm font-bold mb-2" for="password"> Password </label>
+			<label class="block text-center text-sm font-bold mb-2" for="password"> Password </label>
 			<input
 				required
-				class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+				class="text-center shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
 				id="password"
 				type="password"
 				placeholder="******************"
 			/>
-			<p class="text-red-500 text-xs italic">Please choose a password.</p>
 		</div>
 
 		<div class="flex justify-center">
 			<button
-                on:click={signUserIn}
-				class="w-5/12 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+				on:click={signUserIn}
+				class="bg-gray-300 hover:bg-gray-400 items-center p-2 w-48 text-black font-bold py-2 px-6"
 				type="button"
 			>
 				Sign In
@@ -101,7 +102,7 @@
 		<div class="flex justify-center">
 			<button
 				on:click={navigateToCreateAccount}
-				class="w-7/12 hover:text-blue-900 text-blue-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+				class="w-7/12 hover:text-gray-400  font-bold  px-4 rounded focus:outline-none focus:shadow-outline"
 				type="button"
 			>
 				New User? Create Account.
@@ -109,13 +110,7 @@
 		</div>
 
 		<br />
-		<div class="flex justify-center">
-			<a
-				class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-				href="#"
-			>
-				Forgot Password?
-			</a>
-		</div>
+
+		<!-- <div class="text-red-500" on:click={() => signOut()}>SIGN OUT</div> -->
 	</form>
 </div>
