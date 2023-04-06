@@ -16,8 +16,8 @@
 		<p>Destination: {dest}</p>
 	</div>
 	<div class="flex justify-center items-center gap-4 font-bold text-lg p-2">
-		<span id="CarIcon"><Car fill={fastest === 'Driving' ? 'green' : 'red'} /></span> VS
-		<span id="TrainIcon"><Train fill={fastest === 'Driving' ? 'red' : 'green'} /></span>
+		<span id="CarIcon"><Car fill={fastest === 'Driving' ? 'lime' : 'tomato'} /></span> VS
+		<span id="TrainIcon"><Train fill={fastest === 'Driving' ? 'tomato' : 'lime'} /></span>
 	</div>
 	<div><span class="uppercase font-bold">{fastest}</span> is faster today!</div>
 </div>

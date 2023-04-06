@@ -8,7 +8,14 @@
 
 	export let data;
 
-	let trips = [];
+	type Trip = {
+		origin: string;
+		destination: string;
+		name: string;
+		fastest: string;
+	};
+
+	let trips: Trip[] = [];
 
 	async function determineQuickestMode(origin: string, destination: string): Promise<string> {
 		var service = new google.maps.DistanceMatrixService();
