@@ -2,6 +2,7 @@
 	export let name: string;
 	export let origin: string;
 	export let dest: string;
+	export let fastest: string;
 	import Train from '$lib/train.svelte';
 	import Car from '$lib/car.svelte';
 </script>
@@ -15,7 +16,8 @@
 		<p>Destination: {dest}</p>
 	</div>
 	<div class="flex justify-center items-center gap-4 font-bold text-lg p-2">
-		<span id="CarIcon"><Car fill="red"/></span> VS <span id="TrainIcon"><Train fill="green" /></span>
+		<span id="CarIcon"><Car fill={fastest === 'Driving' ? 'green' : 'red'} /></span> VS
+		<span id="TrainIcon"><Train fill={fastest === 'Driving' ? 'red' : 'green'} /></span>
 	</div>
-	<div><span class="uppercase font-bold">train</span> is faster today!</div>
+	<div><span class="uppercase font-bold">{fastest}</span> is faster today!</div>
 </div>
