@@ -18,7 +18,7 @@
 		signOut(auth);
 		authStore.set({
 			isLoggedIn: false,
-			user: null,
+			user: undefined,
 			firebaseControlled: true
 		});
 	}
